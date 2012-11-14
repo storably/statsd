@@ -65,8 +65,15 @@ var flush_stats = function graphite_flush(ts, metrics) {
   var statsd_metrics = metrics.statsd_metrics;
 
   for (key in counters) {
-    statString += 'stats.'        + key + ' ' + counter_rates[key] + ' ' + ts + "\n";
-    statString += 'stats_counts.' + key + ' ' + counters[key]      + ' ' + ts + "\n";
+    // Changes:
+    // 1. Get rid of the _counts metric - you can infer it from the rate and to make use of it requires knowing the
+    //    flush interval
+    // 2. Change the naming scheme
+    statString += key + '.rate' + ' ' + counter_rates[key] + ' ' + ts + "\n";
+
+    // Original
+    // statString += 'stats.'        + key + ' ' + counter_rates[key] + ' ' + ts + "\n";
+    // statString += 'stats_counts.' + key + ' ' + counters[key]      + ' ' + ts + "\n";
 
     numStats += 1;
   }
@@ -74,7 +81,7 @@ var flush_stats = function graphite_flush(ts, metrics) {
   for (key in timer_data) {
     if (Object.keys(timer_data).length > 0) {
       for (timer_data_key in timer_data[key]) {
-         statString += 'stats.timers.' + key + '.' + timer_data_key + ' ' + timer_data[key][timer_data_key] + ' ' + ts + "\n";
+         statString += key + '.lat.' + timer_data_key + ' ' + timer_data[key][timer_data_key] + ' ' + ts + "\n";
       }
 
       numStats += 1;
@@ -82,13 +89,13 @@ var flush_stats = function graphite_flush(ts, metrics) {
   }
 
   for (key in gauges) {
-    statString += 'stats.gauges.' + key + ' ' + gauges[key] + ' ' + ts + "\n";
+    statString += key + '.gauge ' + gauges[key] + ' ' + ts + "\n";
 
     numStats += 1;
   }
 
   for (key in sets) {
-    statString += 'stats.sets.' + key + '.count ' + sets[key].values().length + ' ' + ts + "\n";
+    statString += key + '.set.cnt ' + sets[key].values().length + ' ' + ts + "\n";
 
     numStats += 1;
   }
@@ -98,7 +105,7 @@ var flush_stats = function graphite_flush(ts, metrics) {
   }
 
   statString += 'statsd.numStats ' + numStats + ' ' + ts + "\n";
-  statString += 'stats.statsd.graphiteStats.calculationtime ' + (Date.now() - starttime) + ' ' + ts + "\n";
+  statString += 'statsd.graphiteStats.calculationtime ' + (Date.now() - starttime) + ' ' + ts + "\n";
   post_stats(statString);
 };
 
