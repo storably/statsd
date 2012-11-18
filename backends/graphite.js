@@ -81,7 +81,7 @@ var flush_stats = function graphite_flush(ts, metrics) {
   for (key in timer_data) {
     if (Object.keys(timer_data).length > 0) {
       for (timer_data_key in timer_data[key]) {
-         statString += key + '.lat.' + timer_data_key + ' ' + timer_data[key][timer_data_key] + ' ' + ts + "\n";
+         statString += key + '.' + timer_data_key + ' ' + timer_data[key][timer_data_key] + ' ' + ts + "\n";
       }
 
       numStats += 1;
