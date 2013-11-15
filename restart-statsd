@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sudo forever restart stats.js curalateConfig-1.js
+sudo forever restart stats.js curalateConfig-2.js
+sudo forever restart stats.js curalateConfig-3.js
+sudo forever restart proxy.js curalateProxyConfig.js
