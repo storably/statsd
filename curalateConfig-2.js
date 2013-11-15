@@ -113,6 +113,7 @@
     , graphite:
         {
             legacyNamespace: false
+            , globalPrefix: ""
             , prefixCounter: ""
             , prefixTimer: ""
             , prefixGauge: ""
