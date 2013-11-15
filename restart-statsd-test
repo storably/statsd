@@ -1,7 +1,9 @@
 #!/bin/bash
 
 #the test config files only output to the stdout instead of graphite
-sudo forever restart stats.js curalateConfig-1-test.js
-sudo forever restart stats.js curalateConfig-2-test.js
-sudo forever restart stats.js curalateConfig-3-test.js
-sudo forever restart proxy.js curalateProxyConfig.js
+sudo forever stopall
+sudo forever start stats.js curalateConfig-1-test.js
+sudo forever start stats.js curalateConfig-2-test.js
+sudo forever start stats.js curalateConfig-3-test.js
+sudo forever start proxy.js curalateProxyConfig.js
+sudo forever list

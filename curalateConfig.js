@@ -105,6 +105,7 @@ Optional Variables:
     , mgmt_port: "<SET THIS FOR EACH INSTANCE - 8128,8130,...>"
     , flushInterval: 30000
     , flush_counts: false
+    , deleteIdleStats: true
     , percentThreshold: []
     , backends: [ "./backends/graphite"] //, "./backends/console" ]
     , repeater: [ ]

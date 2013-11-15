@@ -103,6 +103,7 @@
     , mgmt_port: 8128
     , flushInterval: 30000
     , flush_counts: false
+    , deleteIdleStats: true
     , percentThreshold: []
     , backends: [ "./backends/console" ]
     , repeater: [ ]
