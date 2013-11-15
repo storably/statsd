@@ -99,8 +99,22 @@ Optional Variables:
 
 */
 {
-  graphitePort: 2003
-, graphiteHost: "graphite.example.com"
-, port: 8125
-, backends: [ "./backends/graphite" ]
+    graphitePort: 2003
+    , graphiteHost: "localhost"
+    , port: "<SET THIS FOR EACH INSTANCE - PROXY SHOULD BE 8125, INSTANCES SHOULD BE 8127, 8129,...>"
+    , mgmt_port: "<SET THIS FOR EACH INSTANCE - 8128,8130,...>"
+    , flushInterval: 30000
+    , flush_counts: false
+    , percentThreshold: []
+    , backends: [ "./backends/graphite"] //, "./backends/console" ]
+    , repeater: [ ]
+    , repeaterProtocol: "udp4"
+    , graphite:
+        {
+            legacyNamespace: false
+            , prefixCounter: ""
+            , prefixTimer: ""
+            , prefixGauge: ""
+            , prefixSet: ""
+        }
 }
