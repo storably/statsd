@@ -105,7 +105,7 @@
     , mgmt_port: 8130
     , flushInterval: 30000
     , flush_counts: false
-    , deleteIdleStats: true
+    , deleteIdleStats: false
     , percentThreshold: []
     , backends: [ "./backends/graphite"] //, "./backends/console" ]
     , repeater: [ ]
